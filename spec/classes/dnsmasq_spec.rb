@@ -10,11 +10,14 @@ describe 'dnsmasq' do
   let(:logdir)      { "#{boxen_home}/log/dnsmasq" }
   let(:logfile)     { "#{logdir}/console.log" }
   let(:executable)  { "#{boxen_home}/homebrew/sbin/dnsmasq" }
-  let(:tld)         { "dev" }
-  let(:servicename) { "#{tld}.dnsmasq" }
+  let(:tlds)         { {
+      'dev' => "127.0.0.1",
+      'docker' => "192.168.99.100",
+  } }
+  let(:servicename) { "dev.dnsmasq" }
   let(:params) {{
     'host'       => "127.0.0.1",
-    'tld'        => tld,
+    'tlds'       => tlds,
     'configdir'  => configdir,
     'datadir'    => datadir,
     'logdir'     => logdir,
@@ -50,6 +53,13 @@ describe 'dnsmasq' do
     })
 
     should contain_file('/etc/resolver/dev').with({
+      :content => 'nameserver 127.0.0.1',
+      :group   => 'wheel',
+      :owner   => 'root',
+      :require => 'File[/etc/resolver]',
+    })
+
+    should contain_file('/etc/resolver/docker').with({
       :content => 'nameserver 127.0.0.1',
       :group   => 'wheel',
       :owner   => 'root',

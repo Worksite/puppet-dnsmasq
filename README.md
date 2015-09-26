@@ -12,6 +12,18 @@ consistently resolve to `127.0.0.1`.
 include dnsmasq
 ```
 
+Alternatively, you can map additional TLD's...
+
+```puppet
+class { "dnsmasq" :
+    tlds => {
+      'dev'     => "127.0.0.1",
+      'docker'  => "192.168.99.100",
+      'vagrant' => "172.131.0.100",
+    }
+}
+```
+
 ## Required Puppet Modules
 
 * `boxen`

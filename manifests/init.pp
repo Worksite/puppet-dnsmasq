@@ -5,8 +5,7 @@
 #   include dnsmasq
 class dnsmasq(
   $host       = undef,
-  $tld        = undef,
-
+  $tlds       = undef,
   $configdir  = undef,
   $configfile = undef,
   $datadir    = undef,
@@ -15,7 +14,9 @@ class dnsmasq(
   $logfile    = undef,
 ) {
   require homebrew
+  include stdlib
   $servicename = 'dev.dnsmasq'
+  $tld_names = keys($tlds)
 
   file { [$configdir, $logdir, $datadir]:
     ensure => directory,
@@ -40,13 +41,7 @@ class dnsmasq(
     owner  => 'root',
   }
 
-  file { "/etc/resolver/${tld}":
-    content => 'nameserver 127.0.0.1',
-    group   => 'wheel',
-    owner   => 'root',
-    require => File['/etc/resolver'],
-    notify  => Service[$servicename],
-  }
+  dnsmasq::resolver{ $tld_names: }
 
   homebrew::formula { 'dnsmasq':
     before => Package['boxen/brews/dnsmasq'],
