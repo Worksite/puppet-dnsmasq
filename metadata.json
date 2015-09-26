@@ -1,6 +1,6 @@
 {
   "name": "dnsmasq",
-  "version": "3.0.1-wrk",
+  "version": "3.0.2",
   "author": "Worksite",
   "license": "GitHub",
   "summary": "Dnsmasq Puppet Module for Boxen",
