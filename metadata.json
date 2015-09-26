@@ -1,0 +1,11 @@
+{
+  "name": "dnsmasq",
+  "version": "3.0.1-wrk",
+  "author": "Worksite",
+  "license": "GitHub",
+  "summary": "Dnsmasq Puppet Module for Boxen",
+  "source": "https://github.com/Worksite/puppet-dnsmasq",
+  "project_page": "https://github.com/Worksite/puppet-dnsmasq",
+  "issues_url": "https://github.com/Worksite/puppet-dnsmasq/issues",
+  "dependencies": []
+}
