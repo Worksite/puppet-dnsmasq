@@ -2,8 +2,8 @@ bind-interfaces
 keep-in-foreground
 no-resolv
 
-<% for tld_name in @tld_names -%>
-address=/<%= tld_name %>/<%= @tlds[tld_name] %>
+<%- @tlds.each_pair do |tld_name, tld_ip| -%>
+address=/<%= tld_name %>/<%= tld_ip %>
 <%- end -%>
 
 listen-address=127.0.0.1
