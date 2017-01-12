@@ -3,7 +3,7 @@ require 'formula'
 class Dnsmasq < Formula
   homepage 'http://www.thekelleys.org.uk/dnsmasq/doc.html'
   url 'http://www.thekelleys.org.uk/dnsmasq/dnsmasq-2.71.tar.gz'
-  sha1 'b0a39f66557c966629a0ed9282cd87df8f409004'
+  sha256 '7d8c64f66a396442e01b639df3ea6b4e02ba88cbe206c80be8de68b6841634c4'
   version '2.71-boxen1'
 
   def options
